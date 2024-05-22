@@ -8,7 +8,7 @@ interface MoviesRepository {
     suspend fun getTrendingMovies(
         forceFetchFromRemote: Boolean,
         page: Int
-    ): List<Movie>
+    )
 
 
     suspend fun getMovieDetails(
