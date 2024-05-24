@@ -24,7 +24,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.ricdev.uwatch.presentation.movie_detail.components.ImagePoster
 import com.ricdev.uwatch.presentation.movie_detail.components.MovieDetailItem
+import com.ricdev.uwatch.presentation.movies_list.components.ImageCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,17 +66,24 @@ fun MovieDetailsScreen(
             Text(
                 text = state.error,
                 color = MaterialTheme.colorScheme.error,
-//                modifier = Modifier.align(Alignment.Center)
             )
         } else {
             state.movie?.let { movie ->
                 Column(
                     modifier = Modifier
                         .padding(innerPadding)
-                        .padding(16.dp)
+//                        .padding(16.dp)
                 ) {
-                    Text(text = movie.title, style = MaterialTheme.typography.titleMedium)
-                    Text(text = movie.overview, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp))
+                    ImagePoster(movie)
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp)
+                    ) {
+                        Text(text = movie.title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
+                        Text(text = movie.overview, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp))
+                    }
+
                     // Add more movie details as needed
                 }
             }
