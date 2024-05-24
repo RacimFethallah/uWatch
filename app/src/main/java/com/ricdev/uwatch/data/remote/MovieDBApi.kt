@@ -6,6 +6,7 @@ import com.ricdev.uwatch.domain.model.MovieDetails
 import com.ricdev.uwatch.domain.model.MovieList
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieDBApi {
 
@@ -16,7 +17,7 @@ interface MovieDBApi {
 
     @GET("discover/movie")
     suspend fun getTrendingMovies(
-        @Path("page") page: Int,
+        @Query("page") page: Int,
     ): MovieListDto
 
 

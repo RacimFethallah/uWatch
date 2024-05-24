@@ -15,13 +15,13 @@ class GetTrendingMoviesUseCase @Inject constructor(
 ){
     operator fun invoke(page: Int): Flow<Resource<MovieList>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<MovieList>())
             val movieList = repository.getTrendingMovies(page).toMovieList()
-            emit(Resource.Success(movieList))
+            emit(Resource.Success<MovieList>(movieList))
         } catch (e: HttpException) {
-            emit(Resource.Error(message = e.message ?: "An unexpected error occurred"))
+            emit(Resource.Error<MovieList>(message = e.message ?: "An unexpected error occurred"))
         } catch (e: IOException) {
-            emit(Resource.Error(message = "Couldn't reach server. Check your internet connection."))
+            emit(Resource.Error<MovieList>(message = "Couldn't reach server. Check your internet connection."))
         }
     }
 }

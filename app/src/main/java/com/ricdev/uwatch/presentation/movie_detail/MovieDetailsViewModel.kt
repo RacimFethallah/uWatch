@@ -8,6 +8,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavBackStackEntry
 import com.ricdev.uwatch.common.Constants
 import com.ricdev.uwatch.common.Resource
 import com.ricdev.uwatch.domain.model.MovieList
@@ -26,8 +27,11 @@ class MovieDetailsViewModel @Inject constructor(
 
 
     init {
-        savedStateHandle.get<Int>(Constants.PARAM_MOVIE_ID)?.let { movieId ->
-            getMovieDetails(movieId)
+        savedStateHandle.get<String>("movieId")?.let { movieId ->
+            val movieIdInt = movieId.toIntOrNull()
+            if (movieIdInt != null) {
+                getMovieDetails(movieIdInt)
+            }
         }
     }
     private fun getMovieDetails(movieId: Int) {
