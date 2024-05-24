@@ -3,8 +3,8 @@ package com.ricdev.uwatch.presentation.movies_list
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ricdev.uwatch.presentation.ScreenNavigation
 import com.ricdev.uwatch.presentation.movies_list.components.MovieCardItem
+import com.ricdev.uwatch.presentation.movies_list.components.MovieCardSkeleton
 
 @Composable
 fun MovieListScreen(
@@ -23,48 +24,56 @@ fun MovieListScreen(
 ) {
     val state = viewModel.state.value
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
-//            item {
-//                Text(
-//                    text = "Trending Movies",
-//                    style = MaterialTheme.typography.titleMedium,
-//                    textAlign = TextAlign.Center,
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(vertical = 20.dp)
-//                )
-//            }
-
-            items(state.movies.results) { movie ->
-                MovieCardItem(
-                    movie = movie,
-                    onItemClick = {
-                        val movieId = movie.id
-                        navController.navigate(ScreenNavigation.MovieDetailScreen.route + "/$movieId")
-                    }
-                )
-            }
-        }
-
-        if (state.error.isNotBlank()) {
+    Scaffold(
+        topBar = {
             Text(
-                text = state.error,
-                color = MaterialTheme.colorScheme.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .align(Alignment.Center)
+                text = "Trending Movies",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(16.dp)
             )
-        }
-
-        if (state.isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center)
-            )
+        },
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            if (state.isLoading) {
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(10) {
+                        MovieCardSkeleton()
+                    }
+                }
+            } else {
+                if (state.error.isNotBlank()) {
+                    Text(
+                        text = state.error,
+                        color = MaterialTheme.colorScheme.error,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp)
+                            .align(Alignment.CenterHorizontally)
+                    )
+                } else {
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        items(state.movies.results) { movie ->
+                            MovieCardItem(
+                                movie = movie,
+                                onItemClick = {
+                                    navController.navigate(ScreenNavigation.MovieDetailScreen.route + "/${it.id}")
+                                }
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
+
+
+
+
+
+//Box(modifier = Modifier
+//.fillMaxSize()
+//.padding(top = 16.dp)) {
+//
+//}

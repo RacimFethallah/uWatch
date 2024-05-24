@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    MovieDetailsScreen()
                     val navController = rememberNavController()
 
                     NavHost(
@@ -48,7 +47,7 @@ class MainActivity : ComponentActivity() {
                         composable(
                             route = ScreenNavigation.MovieDetailScreen.route + "/{movieId}",
                         ){
-                            MovieDetailsScreen()
+                            MovieDetailsScreen(navController = navController)
                         }
                     }
                 }

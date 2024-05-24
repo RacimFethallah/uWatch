@@ -16,9 +16,5 @@ fun MovieDetailItem(
     movie: MovieDetails,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
-        Text(text = movie.title, style = MaterialTheme.typography.titleMedium)
-        Text(text = movie.overview, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 8.dp))
-        // Add more movie details as needed
-    }
+
 }
