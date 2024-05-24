@@ -1,5 +1,7 @@
 package com.ricdev.uwatch.data.remote.dto
 
+import com.ricdev.uwatch.domain.model.MovieDetails
+
 data class MovieDetailsDto(
     val adult: Boolean,
     val backdrop_path: String,
@@ -28,3 +30,34 @@ data class MovieDetailsDto(
     val vote_average: Double,
     val vote_count: Int
 )
+
+fun MovieDetailsDto.toMovieDetails (): MovieDetails {
+    return MovieDetails(
+        adult = adult,
+        backdrop_path = backdrop_path,
+        belongs_to_collection = belongs_to_collection,
+        budget = budget,
+        genres = genres,
+        homepage = homepage,
+        id = id,
+        imdb_id = imdb_id,
+        origin_country = origin_country,
+        original_language = original_language,
+        original_title = original_title,
+        overview = overview,
+        popularity = popularity,
+        poster_path = poster_path,
+        production_companies = production_companies,
+        production_countries = production_countries,
+        release_date = release_date,
+        revenue = revenue,
+        runtime = runtime,
+        spoken_languages = spoken_languages,
+        status = status,
+        tagline = tagline,
+        title = title,
+        video = video,
+        vote_average = vote_average,
+        vote_count = vote_count
+    )
+}

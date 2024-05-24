@@ -1,5 +1,7 @@
 package com.ricdev.uwatch.domain.model
 
+import com.ricdev.uwatch.data.remote.dto.MovieDto
+
 data class Movie(
     val adult: Boolean,
     val backdrop_path: String,
@@ -16,3 +18,5 @@ data class Movie(
     val vote_average: Double,
     val vote_count: Int
 )
+
+
