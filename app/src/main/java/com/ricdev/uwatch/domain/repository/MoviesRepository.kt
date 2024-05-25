@@ -1,5 +1,6 @@
 package com.ricdev.uwatch.domain.repository
 
+import androidx.paging.PagingData
 import com.ricdev.uwatch.common.Resource
 import com.ricdev.uwatch.data.remote.dto.MovieDetailsDto
 import com.ricdev.uwatch.data.remote.dto.MovieListDto
@@ -16,4 +17,6 @@ interface MoviesRepository {
     suspend fun getMovieDetails(
         movieId: Int
     ): MovieDetailsDto
+
+    suspend fun getTrendingMoviesFlow(): Flow<PagingData<Movie>>
 }

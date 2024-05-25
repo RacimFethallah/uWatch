@@ -5,11 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-//import androidx.compose.foundation.layout.FlowRowScopeInstance.align
-//import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,8 +25,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,10 +34,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ricdev.uwatch.R
+import com.ricdev.uwatch.presentation.ScreenNavigation
 import com.ricdev.uwatch.presentation.movie_detail.components.ImagePoster
-import com.ricdev.uwatch.presentation.movie_detail.components.MovieDetailItem
-import com.ricdev.uwatch.presentation.movies_list.components.ImageCard
-//import com.ricdev.uwatch.presentation.movies_list.components.getMonthName
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,19 +70,16 @@ fun MovieDetailsScreen(
             )
         },
     ) { innerPadding ->
+
         if (state.isLoading) {
             CircularProgressIndicator()
         } else if (state.error.isNotEmpty()) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colorScheme.error,
-            )
+            navController.navigate(ScreenNavigation.MovieListScreen.route)
         } else {
             state.movie?.let { movie ->
                 Column(
                     modifier = Modifier
                         .padding(innerPadding)
-//                        .padding(16.dp)
                 ) {
                     ImagePoster(movie)
                     Column(
@@ -129,7 +120,7 @@ fun MovieDetailsScreen(
                                 style = MaterialTheme.typography.bodyMedium
                             )
                             Spacer(modifier = Modifier.weight(1f))
-                            Text(text = movie.status, style = MaterialTheme.typography.bodyMedium,)
+                            Text(text = movie.status, style = MaterialTheme.typography.bodyMedium)
                             Spacer(modifier = Modifier.width(4.dp))
                             Icon(
                                 painter = painterResource(id = R.drawable.baseline_history_24),

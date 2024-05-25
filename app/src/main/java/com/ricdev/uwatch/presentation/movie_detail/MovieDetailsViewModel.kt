@@ -52,4 +52,7 @@ class MovieDetailsViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+    fun refreshMovieDetails(movieId: Int) {
+        getMovieDetails(movieId)
+    }
 }
