@@ -22,7 +22,7 @@ fun MovieCardSkeleton() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp)
+            .padding(12.dp)
     ) {
         Box(
             modifier = Modifier
@@ -35,6 +35,7 @@ fun MovieCardSkeleton() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(top = 4.dp)
                     .height(24.dp)
                     .background(color = Color.LightGray, shape = RoundedCornerShape(4.dp))
             )
@@ -42,6 +43,7 @@ fun MovieCardSkeleton() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(top = 8.dp)
                     .height(16.dp)
                     .background(color = Color.LightGray, shape = RoundedCornerShape(4.dp))
             )
