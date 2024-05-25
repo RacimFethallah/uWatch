@@ -1,27 +1,15 @@
 package com.ricdev.uwatch.domain.use_case.get_trending_movies
 
-import com.ricdev.uwatch.common.Resource
-import com.ricdev.uwatch.data.remote.dto.toMovieList
-import com.ricdev.uwatch.domain.model.MovieList
+import androidx.paging.PagingData
+import com.ricdev.uwatch.domain.model.Movie
 import com.ricdev.uwatch.domain.repository.MoviesRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class GetTrendingMoviesUseCase @Inject constructor(
     private val repository: MoviesRepository
-){
-    operator fun invoke(page: Int): Flow<Resource<MovieList>> = flow {
-        try {
-            emit(Resource.Loading())
-            val movieList = repository.getTrendingMovies(page).toMovieList()
-            emit(Resource.Success(movieList))
-        } catch (e: HttpException) {
-            emit(Resource.Error(message = e.message ?: "An unexpected error occurred"))
-        } catch (e: IOException) {
-            emit(Resource.Error(message = "Couldn't reach server. Check your internet connection."))
-        }
+) {
+    suspend operator fun invoke(): Flow<PagingData<Movie>> {
+        return repository.getTrendingMovies()
     }
 }

@@ -1,6 +1,5 @@
 package com.ricdev.uwatch.domain.model
 
-import com.ricdev.uwatch.data.remote.dto.MovieDto
 
 data class Movie(
     val adult: Boolean,
