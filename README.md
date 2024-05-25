@@ -9,9 +9,9 @@ Movie Application Made using Kotlin with Jetpack Compose and TMDB API
 
 ## Screenshots
 
-<img alt="Frame 2" height="500" src="https://raw.githubusercontent.com/RacimFethallah/uWatch/main/Screenshots/Screenshot_20240525-181218_uWatch.png" width="500"/>
+<img alt="Frame 2" height="1280" src="https://raw.githubusercontent.com/RacimFethallah/uWatch/main/Screenshots/Screenshot_20240525-181218_uWatch.png" width="720"/>
 
-<img alt="Frame 2" height="500" src="https://raw.githubusercontent.com/RacimFethallah/uWatch/main/Screenshots/Screenshot_20240525-181222_uWatch.png" width="500"/>
+<img alt="Frame 2" height="1280" src="https://raw.githubusercontent.com/RacimFethallah/uWatch/main/Screenshots/Screenshot_20240525-181222_uWatch.png" width="720"/>
 
 ## Features
 
