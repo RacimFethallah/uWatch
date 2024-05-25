@@ -5,7 +5,6 @@ import androidx.paging.PagingState
 import com.ricdev.uwatch.data.remote.MovieDBApi
 import com.ricdev.uwatch.data.remote.dto.toMovieList
 import com.ricdev.uwatch.domain.model.Movie
-import com.ricdev.uwatch.domain.repository.MoviesRepository
 import java.io.IOException
 import retrofit2.HttpException
 

@@ -1,17 +1,13 @@
 package com.ricdev.uwatch.presentation.movie_detail
 
 import androidx.lifecycle.ViewModel
-import com.ricdev.uwatch.domain.use_case.get_trending_movies.GetTrendingMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavBackStackEntry
-import com.ricdev.uwatch.common.Constants
 import com.ricdev.uwatch.common.Resource
-import com.ricdev.uwatch.domain.model.MovieList
 import com.ricdev.uwatch.domain.use_case.get_movie_details.GetMovieDetailsUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +15,7 @@ import kotlinx.coroutines.flow.onEach
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel(){
 
     private val _state = mutableStateOf(MovieDetailsState())
@@ -51,8 +47,5 @@ class MovieDetailsViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
-    }
-    fun refreshMovieDetails(movieId: Int) {
-        getMovieDetails(movieId)
     }
 }

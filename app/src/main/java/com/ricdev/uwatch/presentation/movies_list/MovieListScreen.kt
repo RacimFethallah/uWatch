@@ -1,13 +1,10 @@
 package com.ricdev.uwatch.presentation.movies_list
 
 import androidx.compose.foundation.layout.*
-//import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
-//import androidx.compose.foundation.lazy.LazyColumn
-//import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,7 +20,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-//import androidx.paging.compose.collectAsLazyPagingItems
 import com.ricdev.uwatch.presentation.ScreenNavigation
 import com.ricdev.uwatch.presentation.movies_list.components.MovieCardItem
 import com.ricdev.uwatch.presentation.movies_list.components.MovieCardSkeleton
@@ -57,7 +53,6 @@ fun MovieListScreen(
                 }
 
                 is LoadState.Error -> {
-                    val error = (lazyPagingItems.loadState.refresh as LoadState.Error).error
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,

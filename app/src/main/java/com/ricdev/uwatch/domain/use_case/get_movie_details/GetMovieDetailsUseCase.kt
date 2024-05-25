@@ -2,9 +2,7 @@ package com.ricdev.uwatch.domain.use_case.get_movie_details
 
 import com.ricdev.uwatch.common.Resource
 import com.ricdev.uwatch.data.remote.dto.toMovieDetails
-import com.ricdev.uwatch.data.remote.dto.toMovieList
 import com.ricdev.uwatch.domain.model.MovieDetails
-import com.ricdev.uwatch.domain.model.MovieList
 import com.ricdev.uwatch.domain.repository.MoviesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

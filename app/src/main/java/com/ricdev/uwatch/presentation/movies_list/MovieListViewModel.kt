@@ -4,21 +4,13 @@ import androidx.lifecycle.ViewModel
 import com.ricdev.uwatch.domain.use_case.get_trending_movies.GetTrendingMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.ricdev.uwatch.common.Resource
 import com.ricdev.uwatch.domain.model.Movie
-import com.ricdev.uwatch.domain.model.MovieList
-import com.ricdev.uwatch.domain.repository.MoviesRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -35,31 +27,12 @@ class MovieListViewModel @Inject constructor(
     }
     private fun getTrendingMovies() {
         viewModelScope.launch {
-            getTrendingMoviesUseCase().collectLatest { pagingData ->
+            getTrendingMoviesUseCase().cachedIn(viewModelScope).collectLatest { pagingData ->
                 _trendingMovies.value = pagingData
             }
         }
     }
 }
-
-
-//    private fun getTrendingMovies() {
-//        viewModelScope.launch {
-//            getTrendingMoviesUseCase()
-//                .cachedIn(viewModelScope)
-//                .collectLatest { pagingData ->
-//                    _movies.value = pagingData
-//                }
-//        }
-//    }
-
-//    private val _state = mutableStateOf(MovieListState())
-//    val state: State<MovieListState> = _state
-//
-//
-//    init {
-//        getTrendingMovies()
-//    }
 
 
 
